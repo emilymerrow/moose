@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Butterfly List</h1>
+
+{% for butterfly in butterflies %}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">{{ butterfly.name }}</span>
+      <p>Color: {{ butterfly.color }}</p>
+      <p>Description: {{ butterfly.description }}</p>
+      <p>Stage: {{ butterfly.stage }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock %}

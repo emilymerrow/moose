@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Butterflies</h1>
+<hr />
+
+<p>Welcome to our collection of butterflies! Here you will find some of the most beautiful and fascinating creatures in the world. Our collection includes butterflies from all over the world, each with their own unique colors, patterns, and characteristics.</p>
+
+<p>Our team of experts has carefully curated this collection to showcase the diversity and beauty of butterflies, and we are excited to share it with you. Whether you are a butterfly enthusiast or simply appreciate the wonders of nature, we hope you enjoy exploring our collection.</p>
+
+<h2>Featured Butterflies</h2>
+<ul>
+{% for butterfly in butterflies %}
+  {% if butterfly.name == 'Monarch' or butterfly.name == 'Swallowtail' or butterfly.name == 'Blue Morpho' %}
+    <li><strong>{{ butterfly.name }}</strong></li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+<p>Here are some of the butterflies in our collection:</p>
+<ul>
+  <li><strong>Monarch</strong></li>
+  <li><strong>Swallowtail</strong></li>
+  <li><strong>Blue Morpho</strong></li>
+  <li>Painted Lady</li>
+  <li>Red Admiral</li>
+  <li>Cabbage White</li>
+  <li>Peacock</li>
+</ul>
+
+{% endblock %}
