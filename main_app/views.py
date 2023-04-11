@@ -8,6 +8,8 @@ from .models import Butterfly
 class ButterflyCreate(CreateView):
   model = Butterfly
   fields = '__all__'
+  success_url = '/butterflies/'
+  
 # Add the Cat class & list and view function below the imports
  # Note that parens are optional if not inheriting from another class
 

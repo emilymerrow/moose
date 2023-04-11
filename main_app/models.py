@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 from django.db import models
@@ -11,5 +12,5 @@ class Butterfly(models.Model):
     description = models.TextField(max_length=250)
     wingspan = models.IntegerField(blank=True, null=True)
 
-    def __str__(self):
-        return self.name
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'butterfly_id : self.id'})
