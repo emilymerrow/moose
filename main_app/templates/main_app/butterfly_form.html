@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <table>
+        {{ form.as_table}}
+    </table>
+    <button type="submit" class="btn">Add Butterfly</button>
+</form>
+
+{% endblock content %}

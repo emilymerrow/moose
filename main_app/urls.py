@@ -6,5 +6,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('butterfly/', views.butterfly_index, name='index'),
     path('butterfly/<int:butterfly_id>/', views.butterfly_detail, name='detail'),
+    path('butterfly/create', views.ButterflyCreate.as_view(), name='butterflies_create'),
 
 ]

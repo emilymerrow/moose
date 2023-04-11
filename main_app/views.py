@@ -1,10 +1,13 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
 
 # Add the following import
 from django.http import HttpResponse
 
 from .models import Butterfly
-
+class ButterflyCreate(CreateView):
+  model = Butterfly
+  fields = '__all__'
 # Add the Cat class & list and view function below the imports
  # Note that parens are optional if not inheriting from another class
 
