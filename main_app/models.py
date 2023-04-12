@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 from django.urls import reverse
@@ -11,6 +12,7 @@ class Butterfly(models.Model):
     description = models.TextField(max_length=250)
     wingspan = models.IntegerField(blank=True, null=True)
 
+
     def __str__(self):
         return self.name
     
@@ -19,3 +21,4 @@ class Butterfly(models.Model):
         # self.id is referring to the cat that was just created
         # when the submit the form
         return reverse('detail', kwargs={'butterfly_id': self.id})
+
