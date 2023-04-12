@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Butterfly(models.Model):
@@ -13,3 +13,9 @@ class Butterfly(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        # path('cats/<int:cat_id>/', views.cats_detail, name='detail'),
+        # self.id is referring to the cat that was just created
+        # when the submit the form
+        return reverse('detail', kwargs={'butterfly_id': self.id})
