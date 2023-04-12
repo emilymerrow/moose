@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView
 from django.http import HttpResponse
 
 from .models import Butterfly
+
+
 class ButterflyCreate(CreateView):
   model = Butterfly
   fields = '__all__'
@@ -26,3 +28,4 @@ def about(request):
 def butterfly_index(request):
   butterflies = Butterfly.objects.all()
   return render(request, 'butterflies/index.html', { 'butterflies': butterflies })
+
