@@ -29,12 +29,12 @@ def assoc_flower(request, butterfly_id, flower_id):
 
 class ButterflyCreate(CreateView):
     model = Butterfly
-    fields = ['name', 'species', 'description', 'wingspan']
+    fields = ['name', 'color', 'species', 'description', 'wingspan']
 
 class ButterflyUpdate(UpdateView):
     model = Butterfly
     # Disallow the name as input on the form, so no one can update the name
-    fields = ['species', 'description', 'wingspan']
+    fields = ['species', 'color', 'description', 'wingspan']
 
 
 class ButterflyDelete(DeleteView):

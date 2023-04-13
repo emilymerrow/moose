@@ -25,6 +25,7 @@ class Butterfly(models.Model):
     species = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     wingspan = models.IntegerField(blank=True, null=True)
+    color = models.CharField(max_length=100)
     flowers = models.ManyToManyField(Flower)
 
 
