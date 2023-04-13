@@ -4,12 +4,13 @@
 <h1>Butterfly List</h1>
 
 {% for butterfly in butterflies %}
-<a href="/butterflies/{{butterfly.id}}">
+<a href="{% url 'detail' butterfly.id %}">
   <div class="card">
     <div class="card-content">
       <span class="card-title">{{ butterfly.name }}</span>
-      <p>Color: {{ butterfly.color }}</p>
+      <p>Species: {{ butterfly.species }}</p>
       <p>Description: {{ butterfly.description }}</p>
+      <p>Color: {{ butterfly.color }}</p>
       <p>Species: {{ butterfly.species }}</p>
     </div>
   </div>
