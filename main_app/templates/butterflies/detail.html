@@ -34,9 +34,10 @@
                 </tr>
             </thead>
             <tbody>
-                {% for flower in butterfly.flowers_set.all %}
+                {% for flower in butterfly.nectarsource_set.all %}
                 <tr>
-                    <td>{{ flower.name }}</td>
+                    <td>{{ flower.date }}</td>
+                    <td>{{flower.get_source_display}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
