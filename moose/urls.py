@@ -20,7 +20,8 @@ from main_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('main_app.urls')),
+    path('', include('main_app.urls')), 
     path('butterflies/', views.butterfly_index, name='butterfly_index'),
     path('butterflies/<int:butterfly_id>/', views.butterfly_detail, name='butterfly_detail'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

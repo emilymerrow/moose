@@ -16,6 +16,7 @@ urlpatterns = [
     path('butterflies/<int:pk>/delete/', views.ButterflyDelete.as_view(), name='butterflies_delete'),
     
     path('butterflies/<int:butterfly_id>/add_nectarSource/', views.add_nectar_source, name='add_nectarSource'),
+    path('butterflies/<int:butterfly_id>/add_photo/', views.add_photo, name='add_photo'),
     
     path('butterflies/<int:butterfly_id>/assoc_flower/<int:flower_id>/', views.assoc_flower, name='assoc_flower'),
 

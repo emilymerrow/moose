@@ -1,11 +1,39 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-
 from django.http import HttpResponse
-from .models import Butterfly, Flower
+import uuid
+import boto3
+
+from .models import Butterfly, Flower, Photo
+from botocore.exceptions import ClientError
 from .forms import NectarSourceForm
 
+
+BUCKET = 'emilymerrow'
+S3_BASE_URL = 'https://s3.us-east-2.amazonaws.com/'
+
+
+def add_photo(request, butterfly_id):
+	# photo-file will be the "name" attribute on the <input name='photo-file' type='file'>
+	photo_file = request.FILES.get('photo-file', None)
+	if photo_file:
+		# setup the aws client 
+		s3 = boto3.client('s3')
+		# Make a unique name to store the photo			# franklin.png
+														# photo_file.name.rfind('.'): this gets us the file exstension .png
+			 # store the file in a catcollector folder/randomnumber + the file name with the extension
+		key = 'butterflycollection/' + uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+		try:
+			s3.upload_fileobj(photo_file, BUCKET, key)
+			# build the url string of where it is hosted to store db
+			url = f"{S3_BASE_URL}{BUCKET}/{key}"
+			# add it to the db
+			Photo.objects.create(url=url, butterfly_id=butterfly_id)
+		except ClientError as e:
+			print(e, " error from aws!")
+		
+	return redirect('detail', butterfly_id=butterfly_id)
 
 def add_nectar_source(request, butterfly_id):
     form = NectarSourceForm(request.POST)
@@ -30,6 +58,14 @@ def assoc_flower(request, butterfly_id, flower_id):
 class ButterflyCreate(CreateView):
     model = Butterfly
     fields = ['name', 'color', 'species', 'description', 'wingspan']
+    def form_valid(self, form):
+        # assing the logged in user (self.request.user)
+        # to the the form instance that is being submitted when we 
+        # send a post request ot the server
+        form.instance.user = self.request.user
+        # Let the createview do the rest of its job
+        return super().form_valid(form)
+
 
 class ButterflyUpdate(UpdateView):
     model = Butterfly

@@ -4,6 +4,8 @@
 
 <h1>Butterfly Details</h1>
 
+<div class="butterfly"></div>
+
 <div class="row">
     <div class="col s6">
         <div class="card">
@@ -17,8 +19,24 @@
             <div class="card-action">
                 <a href="{% url 'butterflies_update' butterfly.id %}">Edit</a>
                 <a href="{% url 'butterflies_delete' butterfly.id %}">Delete</a>
+
             </div>
-        </div>
+          </div>
+          <!-- the end of class card -->
+            {% for photo in butterfly.photo_set.all %}
+		        <img class="responsive-img card-panel" src="{{photo.url}}">
+		        {% empty %}
+		       <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+		        {% endfor %}
+
+            <form action="{% url 'add_photo' butterfly.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+              {% csrf_token %}
+              <input type="file" name="photo-file">
+              <br><br>
+              <input type="submit" class="btn" value="Upload Photo">
+            </form>
+
+
     </div>
     <div class="col s6">
 
